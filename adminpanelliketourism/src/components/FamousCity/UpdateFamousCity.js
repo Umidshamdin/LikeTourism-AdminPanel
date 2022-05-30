@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Button, Form, FormGroup } from "react-bootstrap";
+import "../../assets/sass/updatefamouscity.scss";
+
+import { Button, Form } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -12,7 +14,7 @@ function UpdateEvent(props) {
   const [newimg, setnewImg] = useState();
 
   function initPromise() {
-    const response = axios.get(`/api/Event/GetById/${id}`);
+    const response = axios.get(`/api/FamousCity/GetById/${id}`);
     return new Promise(function (res, rej) {
       res(response);
     });
@@ -22,12 +24,10 @@ function UpdateEvent(props) {
     e.preventDefault();
     await axios
       .put(
-        `
-        /api/FamousCity/Edit/${id}`,
+        `/api/FamousCity/Edit/${id}`,
         {
           Id: id,
           Name: newname,
-
           Image: newimg,
         },
         { "Content-Type": "multipart/form-data" }
@@ -45,6 +45,18 @@ function UpdateEvent(props) {
       });
   }
 
+  useEffect(() => {
+    initPromise()
+      .then(function (result) {
+        // "initResolve"
+        return result.data;
+      })
+      .then(function (result) {
+        setName(result.name); // "normalReturn"
+        setImg(result.image);
+      });
+  });
+
   function getBase64(file) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -61,23 +73,18 @@ function UpdateEvent(props) {
       setnewImg(result);
     });
   }
-
-  useEffect(() => {
-    initPromise()
-      .then(function (result) {
-        // "initResolve"
-        return result.data;
-      })
-      .then(function (result) {
-        setName(result.name); // "normalReturn"
-        setImg(result.img);
-      });
-  });
   return (
     <div className="container">
+      <div className="images">
+        <img
+          className="viewimg mb-3"
+          src={`data:image/jpeg;base64,${img}`}
+          alt=""
+        />
+      </div>
       <Form onSubmit={(e) => update(e)}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Event Name</Form.Label>
+          <Form.Label> Name</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter Event Name"
@@ -86,7 +93,7 @@ function UpdateEvent(props) {
           />
         </Form.Group>
         <Form.Group controlId="formFile" className="mb-3">
-          <Form.Label>BackGround Image</Form.Label>
+          <Form.Label>Image</Form.Label>
           <Form.Control
             type="file"
             onChange={(e) => base64Img(e.target.files[0])}

@@ -24,6 +24,10 @@ function FamousCityTable() {
     loadCities();
   };
 
+  const updateCities = async id => {
+   console.log(id);
+  };
+
   return (
     <div className="tables">
       <Link to="/CreateFamousCity" className="btn btn-success btn-fw link">
@@ -41,7 +45,7 @@ function FamousCityTable() {
         </thead>
         <tbody className="tbodies">
           {city.map((citiess) => (
-            <tr>
+            <tr className="trs">
               <td className="tds">{++count}</td>
 
               <td>
@@ -52,14 +56,19 @@ function FamousCityTable() {
                 />
               </td>
               <td>
-                <div className="cityname">
-                {citiess.name}
-                </div>
+                <div className="cityname">{citiess.name}</div>
               </td>
 
               <td>
                 <div className="buttons px-1">
-                  <button className="btn btn-primary">Edit</button>
+                  <Link to={`/updatefamouscity/${citiess.id}`}>
+                    <button
+                      onClick={() => updateCities(citiess.id)}
+                      className="btn btn-primary"
+                    >
+                      Edit
+                    </button>
+                  </Link>
 
                   <button
                     onClick={() => deleteCities(citiess.id)}
