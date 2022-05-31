@@ -8,6 +8,7 @@ import UpdateFamousCity from "./components/FamousCity/UpdateFamousCity";
 import SliderTable from "./components/Slider/SliderTable";
 import CreateSlider from "./components/Slider/CreateSlider";
 import UpdateSlider from "./components/Slider/UpdateSlider";
+import { Pagination } from "react-bootstrap";
 
 
 function App() {
@@ -18,7 +19,9 @@ function App() {
         <Sidebar />
         <Routes>
           <Route path="/famouscitytable" element={<FamousCityTable />} />
-          <Route path="/slidertable" element={<SliderTable />} />
+          <Route path="/pagination" element={<Pagination />} />
+
+          <Route path="/slidertable/" element={<SliderTable/>} />
           <Route path="/createslider" element={<CreateSlider />} />
           <Route path="/updateslider/:id" element={<UpdateSlider />} />
           <Route path="/CreateFamousCity" element={<CreateFamousCity />} />     
