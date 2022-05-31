@@ -41,10 +41,10 @@ export default function Sidebar() {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Quick Menu</h3>
           <ul className="sidebarList">
-            <Link to="/users" className="link">
+            <Link to="/slidertable" className="link">
               <li className="sidebarListItem">
                 <PermIdentity className="sidebarIcon" />
-                Users
+                Slider
               </li>
             </Link>
             <Link to="/famouscitytable" className="link">
