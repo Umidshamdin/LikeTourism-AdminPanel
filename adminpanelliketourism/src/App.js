@@ -7,6 +7,8 @@ import CreateFamousCity from "./components/FamousCity/CreateFamousCity";
 import UpdateFamousCity from "./components/FamousCity/UpdateFamousCity";
 import SliderTable from "./components/Slider/SliderTable";
 import CreateSlider from "./components/Slider/CreateSlider";
+import UpdateSlider from "./components/Slider/UpdateSlider";
+
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
           <Route path="/famouscitytable" element={<FamousCityTable />} />
           <Route path="/slidertable" element={<SliderTable />} />
           <Route path="/createslider" element={<CreateSlider />} />
+          <Route path="/updateslider/:id" element={<UpdateSlider />} />
           <Route path="/CreateFamousCity" element={<CreateFamousCity />} />     
           <Route path="/UpdateFamousCity/:id" element={<UpdateFamousCity />} />
         </Routes>

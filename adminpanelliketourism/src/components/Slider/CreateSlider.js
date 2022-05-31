@@ -20,6 +20,9 @@ function CreateEvent() {
     });
   }
 
+
+
+
   async function Create(e) {
     e.preventDefault();
     await axios
@@ -57,7 +60,7 @@ function CreateEvent() {
     <div className="container">
       <Form onSubmit={(e) => Create(e)}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Name</Form.Label>
+          <Form.Label>Title</Form.Label>
           <Form.Control
             type="text"
             placeholder=" Slider title"
@@ -66,7 +69,7 @@ function CreateEvent() {
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Name</Form.Label>
+          <Form.Label>Desc</Form.Label>
           <Form.Control
             type="text"
             placeholder="slider desc"

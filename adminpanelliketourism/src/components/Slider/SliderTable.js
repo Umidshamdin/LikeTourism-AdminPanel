@@ -30,8 +30,8 @@ function SliderTable() {
 
   return (
     <div className="tables">
-      <Link to="/createslider" className="btn btn-success btn-fw link">
-        Create City
+      <Link to="/CreateSlider" className="btn btn-success btn-fw link">
+        Create Slider
       </Link>
 
       <Table striped bordered hover variant="dark">
@@ -41,7 +41,6 @@ function SliderTable() {
             <th>Image</th>
             <th>Title</th>
             <th>Description</th>
-
             <th>Settings</th>
           </tr>
         </thead>
@@ -66,7 +65,7 @@ function SliderTable() {
               
             <td>
               <div className="buttons px-1">
-                <Link to={`/updatefamouscity/${sliders.id}`}>
+                <Link to={`/updateslider/${sliders.id}`}>
                   <button
                     onClick={() => updateSliders(sliders.id)}
                     className="btn btn-primary"
