@@ -49,6 +49,13 @@ export default function Sidebar() {
                 Famouscity
               </li>
             </Link>
+
+            <Link to="/hotellisttable" className="link">
+              <li className="sidebarListItem">
+                <Storefront className="sidebarIcon" />
+                HotelList
+              </li>
+            </Link>
            
             <li className="sidebarListItem">
               <BarChart className="sidebarIcon" />

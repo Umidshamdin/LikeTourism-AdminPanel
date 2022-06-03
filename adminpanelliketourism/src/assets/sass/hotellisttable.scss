@@ -1,0 +1,61 @@
+.tables {
+    margin-left: 5px;
+    margin-right: 11px;
+    width: 100%;
+  
+    .table {
+      margin-top: 20px;
+      .thead {
+        th {
+          width: 200px;
+        }
+        .ths {
+          width: 20px;
+          text-align: center;
+        }
+      }
+      .tbodies{
+        .tds{
+          text-align: center;
+        }
+        .trs{
+          margin-top: 5px;
+        }
+        .cityname{
+          margin-top: 27px;
+          margin-left: 10px;
+        }
+       
+      }
+    }
+    .link {
+      margin-left: 5px;
+    }
+    .buttons {
+      display: flex;
+      .btn {
+        margin-left: 3px;
+        width: 80px;
+        margin-top: 22px;
+      }
+      &:hover .btn-danger{
+        transform: scale(1.1);
+      }
+      
+    }
+    .images {
+      width: 45%;
+      height: 13vh;
+    }
+    td {
+      margin-top: 22px;
+    }
+  
+    // &:hover td {
+    //   .images {
+    //     -webkit-transform: scale(1.1);
+    //     opacity: 1;
+    //   }
+    // }
+  }
+  

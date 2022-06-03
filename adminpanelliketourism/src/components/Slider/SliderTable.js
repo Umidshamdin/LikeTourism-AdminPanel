@@ -9,7 +9,7 @@ function SliderTable() {
   const [slider, setSliders] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [slidersPerPage] = useState(4);
+  const [slidersPerPage] = useState(2);
 
   useEffect(() => {
     loadSliders();

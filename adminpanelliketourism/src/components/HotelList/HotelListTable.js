@@ -1,38 +1,42 @@
 import { Table } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
-import "../../assets/sass/famouscitytable.scss";
+import "../../assets/sass/hotellisttable.scss";
+import { useParams } from "react-router-dom";
+
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-function FamousCityTable() {
+function HotelListTable() {
   let count = 0;
 
-  const [city, setCities] = useState([]);
+  const [hotel, setHotels] = useState([]);
+  const {id} = useParams();
+
 
   useEffect(() => {
-    loadCities();
+    loadHotels();
   }, []);
 
-  const loadCities = async () => {
+  const loadHotels = async () => {
+      debugger
     const results = await axios.get(
-      "https://localhost:44363/api/FamousCity/GetAll"
+      `https://localhost:44363/api/HotelList/GetAll/${id}`
     );
-    setCities(results.data);
+    setHotels(results.data);
   };
+//   const deleteCities = async (id) => {
+//     await axios.delete(`/api/FamousCity/Delete/${id}`);
+//     loadCities();
+//   };
 
-  const deleteCities = async (id) => {
-    await axios.delete(`/api/FamousCity/Delete/${id}`);
-    loadCities();
-  };
-
-  const updateCities = async id => {
-   console.log(id);
-  };
+//   const updateCities = async id => {
+//    console.log(id);
+//   };
 
   return (
     <div className="tables">
       <Link to="/CreateFamousCity" className="btn btn-success btn-fw link">
-        Create City
+        Create Hotel
       </Link>
 
       <Table striped bordered hover variant="dark">
@@ -41,48 +45,57 @@ function FamousCityTable() {
             <th className="ths">#</th>
             <th>Image</th>
             <th>Name</th>
+            <th>Dictance</th>
+            <th>Desc</th>
+            <th>Rating</th>
+            <th>Price</th>
+            <th>FamousCityId</th>
+
+
             <th>Settings</th>
           </tr>
         </thead>
         <tbody className="tbodies">
-          {city.map((citiess) => (
+          {hotel.map((hotels) => (
             <tr className="trs">
               <td className="tds">{++count}</td>
 
               <td>
                 <img
                   className="images"
-                  src={`data:image/jpeg;base64,${citiess.image}`}
+                  src={`data:image/jpeg;base64,${hotels.image}`}
                   alt=""
                 />
               </td>
               <td>
-                <div className="cityname">{citiess.name}</div>
+                <div className="cityname">{hotels.name}</div>
               </td>
-
+              <td>
+                <div className="cityname">{hotels.distance}</div>
+              </td>
+              <td>
+                <div className="cityname">{hotels.desc}</div>
+              </td>
+              <td>
+                <div className="cityname">{hotels.rating}</div>
+              </td>
+              <td>
+                <div className="cityname">{hotels.prise}</div>
+              </td>
+              <td>
+                <div className="cityname">{hotels.famousCityId}</div>
+              </td>
+{/* 
               <td>
                 <div className="buttons px-1">
-                  <Link to={`/updatefamouscity/${citiess.id}`}>
+                  <Link to={`/updatefamouscity/${hotels.id}`}>
                     <button
                       onClick={() => updateCities(citiess.id)}
                       className="btn btn-primary"
                     >
                       Edit
                     </button>
-                    
                   </Link>
-
-                  <Link to={`/hotellisttable/${citiess.id}`}>
-                    <button
-                      
-                      className="btn btn-primary"
-                    >
-                      detail
-                    </button>
-                    
-                  </Link>
-
-
 
                   <button
                     onClick={() => deleteCities(citiess.id)}
@@ -91,7 +104,7 @@ function FamousCityTable() {
                     Delete
                   </button>
                 </div>
-              </td>
+              </td> */}
             </tr>
           ))}
         </tbody>
@@ -100,4 +113,4 @@ function FamousCityTable() {
   );
 }
 
-export default FamousCityTable;
+export default HotelListTable;
