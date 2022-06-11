@@ -77,7 +77,7 @@ function FamousCityTable() {
                       
                       className="btn btn-primary"
                     >
-                      detail
+                      Hotels
                     </button>
                     
                   </Link>

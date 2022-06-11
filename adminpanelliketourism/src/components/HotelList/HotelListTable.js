@@ -46,8 +46,7 @@ function HotelListTable() {
             <th>Image</th>
             <th>Name</th>
             <th>Dictance</th>
-            <th>Desc</th>
-            <th>Rating</th>
+          
             <th>Price</th>
             <th>FamousCityId</th>
 
@@ -73,12 +72,7 @@ function HotelListTable() {
               <td>
                 <div className="cityname">{hotels.distance}</div>
               </td>
-              <td>
-                <div className="cityname">{hotels.desc}</div>
-              </td>
-              <td>
-                <div className="cityname">{hotels.rating}</div>
-              </td>
+            
               <td>
                 <div className="cityname">{hotels.prise}</div>
               </td>
