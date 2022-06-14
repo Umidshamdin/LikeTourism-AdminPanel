@@ -10,6 +10,7 @@ import CreateSlider from "./components/Slider/CreateSlider";
 import UpdateSlider from "./components/Slider/UpdateSlider";
 import { Pagination } from "react-bootstrap";
 import HotelListTable from "./components/HotelList/HotelListTable";
+import HotelCreate from "./components/HotelList/HotelCreate";
 
 function App() {
   return (
@@ -28,6 +29,8 @@ function App() {
           <Route path="/updateslider/:id" element={<UpdateSlider />} />
           <Route path="/CreateFamousCity" element={<CreateFamousCity />} />
           <Route path="/UpdateFamousCity/:id" element={<UpdateFamousCity />} />
+          <Route path="/HotelCreate" element={<HotelCreate />} />
+
         </Routes>
       </div>
     </Router>

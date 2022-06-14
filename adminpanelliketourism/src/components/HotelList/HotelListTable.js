@@ -35,7 +35,7 @@ function HotelListTable() {
 
   return (
     <div className="tables">
-      <Link to="/CreateFamousCity" className="btn btn-success btn-fw link">
+      <Link to="/HotelCreate" className="btn btn-success btn-fw link">
         Create Hotel
       </Link>
 
@@ -46,9 +46,15 @@ function HotelListTable() {
             <th>Image</th>
             <th>Name</th>
             <th>Dictance</th>
-          
+            <th>Rating</th>
             <th>Price</th>
+            <th>Star</th>
+            <th>Desc</th>
+
             <th>FamousCityId</th>
+
+          
+
 
 
             <th>Settings</th>
@@ -74,8 +80,20 @@ function HotelListTable() {
               </td>
             
               <td>
+                <div className="cityname">{hotels.rating}</div>
+              </td>
+              
+              <td>
                 <div className="cityname">{hotels.prise}</div>
               </td>
+
+              <td>
+                <div className="cityname">{hotels.star}</div>
+              </td>
+              <td>
+                <div className="cityname">{hotels.desc}</div>
+              </td>
+            
               <td>
                 <div className="cityname">{hotels.famousCityId}</div>
               </td>
