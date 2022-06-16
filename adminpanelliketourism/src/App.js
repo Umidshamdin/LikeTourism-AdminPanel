@@ -16,6 +16,7 @@ import HotelImagesTable from "./components/HotelListDetail/HotelImages/HotelImag
 import HotelCreate from "./components/HotelList/HotelCreate";
 import HotelRouter from "./components/HotelListDetail/HotelRouter";
 import HotelDescription from "./components/HotelListDetail/HotelDescription";
+import RoomListTable from "./components/HotelListDetail/Rooms/RoomListTable";
 
 
 function App() {
@@ -32,6 +33,10 @@ function App() {
           <Route path="/hotellisttable/:id" element={<HotelListTable />} />
           <Route path="/hotelrouter/:id" element={<HotelRouter />} />
           <Route path="/hoteldescription/:id" element={<HotelDescription />} />
+          <Route path="/roomlisttable/:id" element={<RoomListTable />} />
+          
+
+
 
 
           {/* <Route path="/hotellisttable2/:id" element={<HotelListTable2 />} /> */}

@@ -1,6 +1,6 @@
 import { Table } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
-import "../../assets/sass/hotellisttable.scss";
+import "../../../assets/sass/hotellisttable.scss";
 import { useParams } from "react-router-dom";
 
 import axios from "axios";
@@ -19,14 +19,14 @@ function HotelListTable() {
   const loadHotels = async () => {
     debugger;
     const results = await axios.get(
-      `https://localhost:44363/api/HotelList/GetAll/${id}`
+      `https://localhost:44363/api/Reservation/GetAll/${id}`
     );
     setHotels(results.data);
   };
-  const deleteCities = async (id) => {
-    await axios.delete(`/api/HotelList/Delete/${id}`);
-    loadHotels();
-  };
+  //   const deleteCities = async (id) => {
+  //     await axios.delete(`/api/FamousCity/Delete/${id}`);
+  //     loadCities();
+  //   };
 
   //   const updateCities = async id => {
   //    console.log(id);
@@ -46,17 +46,15 @@ function HotelListTable() {
           <tr>
             <th className="ths">#</th>
             <th>Image</th>
-            <th>Name</th>
-            <th>Dictance</th>
-            <th>Star</th>
+            <th>RoomType</th>
+            <th>RoomPrise</th>
+            <th>Remained</th>
 
-            <th>Desc</th>
-            <th>Rating</th>
-            <th>RatingTitle</th>
-            <th>Prise</th>
-
-            <th>FamousCityId</th>
+            <th>HotelListId</th>
             <th>Settings</th>
+
+
+           
           </tr>
         </thead>
         <tbody className="tbodies">
@@ -72,48 +70,29 @@ function HotelListTable() {
                 />
               </td>
               <td>
-                <div className="cityname">{hotels.name}</div>
+                <div className="cityname">{hotels.roomType}</div>
               </td>
               <td>
-                <div className="cityname">{hotels.distance}</div>
-              </td>
-
-              <td>
-                <div className="cityname">{hotels.star}</div>
+                <div className="cityname">{hotels.roomPrise}</div>
               </td>
 
               <td>
-                <div className="cityname">{hotels.desc}</div>
+                <div className="cityname">{hotels.remained}</div>
               </td>
 
               <td>
-                <div className="cityname">{hotels.rating}</div>
+                <div className="cityname">{hotels.hotelListId}</div>
               </td>
 
-              <td>
-                <div className="cityname">{hotels.ratingTitle}</div>
-              </td>
+              
 
               <td>
-                <div className="cityname">{hotels.prise}</div>
-              </td>
-
-              <td>
-                <div className="cityname">{hotels.famousCityId}</div>
-              </td>
-
-              <td>
-                <Link to={`/hotellisttable2/${hotels.id}`}>
+                <Link to={"/"}>
                   <button className="btn btn-warning">Edit</button>
                 </Link>
 
                 <Link to={"/"}>
-                  <button
-                    onClick={() => deleteCities(hotels.id)}
-                    className="btn btn-danger"
-                  >
-                    Delete
-                  </button>
+                  <button className="btn btn-danger">Delete</button>
                 </Link>
 
                 <Link to={`/hotelrouter/${hotels.id}`}>

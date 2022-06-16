@@ -15,7 +15,7 @@ function HotelRouter() {
         <button className="btn btn-primary">HotelDescription</button>
       </Link>
 
-      <Link to={"/"}>
+      <Link to={`/roomlisttable/${id}`}>
         <button className="btn btn-primary">Rooms</button>
       </Link>
     </div>
