@@ -25,8 +25,8 @@ function FamousCityTable() {
     loadCities();
   };
 
-  const updateCities = async id => {
-   console.log(id);
+  const updateCities = async (id) => {
+    console.log(id);
   };
 
   return (
@@ -41,6 +41,7 @@ function FamousCityTable() {
             <th className="ths">#</th>
             <th>Image</th>
             <th>Name</th>
+            <th>Id</th>
             <th>Settings</th>
           </tr>
         </thead>
@@ -59,30 +60,20 @@ function FamousCityTable() {
               <td>
                 <div className="cityname">{citiess.name}</div>
               </td>
+              <td>
+                <div className="cityname">{citiess.id}</div>
+              </td>
 
               <td>
                 <div className="buttons px-1">
                   <Link to={`/updatefamouscity/${citiess.id}`}>
                     <button
                       onClick={() => updateCities(citiess.id)}
-                      className="btn btn-primary"
+                      className="btn btn-warning"
                     >
                       Edit
                     </button>
-                    
                   </Link>
-
-                  <Link to={`/hotellisttable/${citiess.id}`}>
-                    <button
-                      
-                      className="btn btn-primary"
-                    >
-                      Hotels
-                    </button>
-                    
-                  </Link>
-
-
 
                   <button
                     onClick={() => deleteCities(citiess.id)}
@@ -90,6 +81,13 @@ function FamousCityTable() {
                   >
                     Delete
                   </button>
+                  <div className="hotelss">
+                    <Link to={`/hotellisttable/${citiess.id}`}>
+                      <button className="btn btn-primary hotelsto">
+                        Hotels
+                      </button>
+                    </Link>
+                  </div>
                 </div>
               </td>
             </tr>

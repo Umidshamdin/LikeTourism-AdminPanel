@@ -16,8 +16,8 @@ export default function Sidebar() {
     <div className="sidebar">
       <div className="sidebarWrapper">
         <div className="sidebarMenu">
-          <h3 className="sidebarTitle">Dashboard</h3>
-          <ul className="sidebarList">
+          
+          {/* <ul className="sidebarList">
             <Link to="/" className="link">
             <li className="sidebarListItem active">
               <LineStyle className="sidebarIcon" />
@@ -32,7 +32,7 @@ export default function Sidebar() {
               <TrendingUp className="sidebarIcon" />
               Sales
             </li>
-          </ul>
+          </ul> */}
         </div>
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Quick Menu</h3>

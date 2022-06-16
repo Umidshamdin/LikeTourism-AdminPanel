@@ -45,74 +45,37 @@ function HotelListTable() {
         <thead className="thead">
           <tr>
             <th className="ths">#</th>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Dictance</th>
-            <th>Star</th>
-
             <th>Desc</th>
             <th>Rating</th>
             <th>RatingTitle</th>
             <th>Prise</th>
-
-            <th>FamousCityId</th>
-            <th>Settings</th>
           </tr>
         </thead>
         <tbody className="tbodies">
-          {hotel.map((hotels) => (
+          {hotel.map((hotelss) => (
             <tr className="trs">
               <td className="tds">{++count}</td>
 
               <td>
-                <img
-                  className="images"
-                  src={`data:image/jpeg;base64,${hotels.image}`}
-                  alt=""
-                />
-              </td>
-              <td>
-                <div className="cityname">{hotels.name}</div>
-              </td>
-              <td>
-                <div className="cityname">{hotels.distance}</div>
+                <div className="cityname">{hotelss.desc}</div>
               </td>
 
               <td>
-                <div className="cityname">{hotels.star}</div>
+                <div className="cityname">{hotelss.rating}</div>
+              </td>
+              <td>
+                <div className="cityname">{hotelss.ratingTitle}</div>
               </td>
 
               <td>
-                <div className="cityname">{hotels.desc}</div>
+                <div className="cityname">{hotelss.prise}</div>
               </td>
 
               <td>
-                <div className="cityname">{hotels.rating}</div>
-              </td>
-
-              <td>
-                <div className="cityname">{hotels.ratingTitle}</div>
-              </td>
-
-              <td>
-                <div className="cityname">{hotels.prise}</div>
-              </td>
-
-              <td>
-                <div className="cityname">{hotels.famousCityId}</div>
-              </td>
-
-              <td>
-                <Link to={`/hotellisttable2/${hotels.id}`}>
+                <Link to={`/hotellisttable2/${hotelss.id}`}>
                   <button className="btn btn-warning">Edit</button>
-                </Link>
+                  <button className="btn btn-warning">Delete</button>
 
-                <Link to={"/"}>
-                  <button className="btn btn-danger">Delete</button>
-                </Link>
-
-                <Link to={`/hotelrouter/${hotels.id}`}>
-                  <button className="btn btn-primary">Detail</button>
                 </Link>
               </td>
               {/* 

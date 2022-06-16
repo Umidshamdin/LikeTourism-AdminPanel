@@ -10,7 +10,13 @@ import CreateSlider from "./components/Slider/CreateSlider";
 import UpdateSlider from "./components/Slider/UpdateSlider";
 import { Pagination } from "react-bootstrap";
 import HotelListTable from "./components/HotelList/HotelListTable";
+import HotelImagesTable from "./components/HotelListDetail/HotelImages/HotelImagesTable"
+// import HotelListTable2 from "./components/HotelList/HotelListTable2";
+
 import HotelCreate from "./components/HotelList/HotelCreate";
+import HotelRouter from "./components/HotelListDetail/HotelRouter";
+import HotelDescription from "./components/HotelListDetail/HotelDescription";
+
 
 function App() {
   return (
@@ -24,6 +30,13 @@ function App() {
 
           <Route path="/slidertable/" element={<SliderTable />} />
           <Route path="/hotellisttable/:id" element={<HotelListTable />} />
+          <Route path="/hotelrouter/:id" element={<HotelRouter />} />
+          <Route path="/hoteldescription/:id" element={<HotelDescription />} />
+
+
+          {/* <Route path="/hotellisttable2/:id" element={<HotelListTable2 />} /> */}
+
+          <Route path="/HotelImagesTable/:id" element={<HotelImagesTable />} />
           
           <Route path="/createslider" element={<CreateSlider />} />
           <Route path="/updateslider/:id" element={<UpdateSlider />} />

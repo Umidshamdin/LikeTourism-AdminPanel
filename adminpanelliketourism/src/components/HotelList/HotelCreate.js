@@ -8,6 +8,8 @@ function CreateEvent() {
   const [name, setName] = useState();
   const [distance, setDistance] = useState();
   const [rating, setRating] = useState();
+  const [ratingTitle, setRatingTitle] = useState();
+
   const [desc, setDesc] = useState();
   const [star, setStar] = useState();
   const [famousCityId, setFamousCityId] = useState();
@@ -39,6 +41,8 @@ function CreateEvent() {
           Name: name,
           Image: img,
           Rating:rating,
+          RatingTitle:ratingTitle,
+
           Desc:desc,
           Star:star,
 
@@ -103,6 +107,15 @@ function CreateEvent() {
             onChange={(e) => setRating(e.target.value)}
           />
         </Form.Group>
+
+        <Form.Group controlId="formFile" className="mb-3">
+          <Form.Label>Rating Title</Form.Label>
+          <Form.Control
+            type="text"
+            onChange={(e) => setRatingTitle(e.target.value)}
+          />
+        </Form.Group>
+
         <Form.Group controlId="formFile" className="mb-3">
           <Form.Label>Desc</Form.Label>
           <Form.Control

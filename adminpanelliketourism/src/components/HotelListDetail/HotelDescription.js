@@ -17,20 +17,20 @@ function HotelListTable() {
   }, []);
 
   const loadHotels = async () => {
-    debugger;
+    
     const results = await axios.get(
-      `https://localhost:44363/api/HotelList/GetAll/${id}`
+      `https://localhost:44363/api/HotelDescription/GetAll/${id}`
     );
     setHotels(results.data);
   };
-  //   const deleteCities = async (id) => {
-  //     await axios.delete(`/api/FamousCity/Delete/${id}`);
-  //     loadCities();
-  //   };
+    const deleteCities = async (id) => {
+      await axios.delete(`/api/FamousCity/Delete/${id}`);
+      loadHotels();
+    };
 
-  //   const updateCities = async id => {
-  //    console.log(id);
-  //   };
+    const updateCities = async id => {
+     console.log(id);
+    };
 
   return (
     <div className="tables">
@@ -45,17 +45,17 @@ function HotelListTable() {
         <thead className="thead">
           <tr>
             <th className="ths">#</th>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Dictance</th>
-            <th>Star</th>
+            <th>LongDesc</th>
+            <th>Breakfast</th>
+            <th>BreakfastTitle</th>
+            <th>Parking</th>
+            <th>Animal</th>
+            <th>CheckIn</th>
+            <th>HotelListId</th>
 
-            <th>Desc</th>
-            <th>Rating</th>
-            <th>RatingTitle</th>
-            <th>Prise</th>
 
-            <th>FamousCityId</th>
+
+            
             <th>Settings</th>
           </tr>
         </thead>
@@ -65,44 +65,29 @@ function HotelListTable() {
               <td className="tds">{++count}</td>
 
               <td>
-                <img
-                  className="images"
-                  src={`data:image/jpeg;base64,${hotels.image}`}
-                  alt=""
-                />
+                {hotels.longDesc}
               </td>
               <td>
-                <div className="cityname">{hotels.name}</div>
+                {hotels.breakfast}
               </td>
               <td>
-                <div className="cityname">{hotels.distance}</div>
+                {hotels.breakfastTitle}
               </td>
+              <td>
+                {hotels.parking}
+              </td>
+              <td>
+                {hotels.animal}
+              </td>
+              <td>
+                {hotels.checkIn}
+              </td>
+              <td>
+                {hotels.hotelListId}
+              </td>
+             
 
-              <td>
-                <div className="cityname">{hotels.star}</div>
-              </td>
-
-              <td>
-                <div className="cityname">{hotels.desc}</div>
-              </td>
-
-              <td>
-                <div className="cityname">{hotels.rating}</div>
-              </td>
-
-              <td>
-                <div className="cityname">{hotels.ratingTitle}</div>
-              </td>
-
-              <td>
-                <div className="cityname">{hotels.prise}</div>
-              </td>
-
-              <td>
-                <div className="cityname">{hotels.famousCityId}</div>
-              </td>
-
-              <td>
+              {/* <td>
                 <Link to={`/hotellisttable2/${hotels.id}`}>
                   <button className="btn btn-warning">Edit</button>
                 </Link>
@@ -111,16 +96,16 @@ function HotelListTable() {
                   <button className="btn btn-danger">Delete</button>
                 </Link>
 
-                <Link to={`/hotelrouter/${hotels.id}`}>
+                <Link to={"/"}>
                   <button className="btn btn-primary">Detail</button>
                 </Link>
-              </td>
-              {/* 
+              </td> */}
+              
               <td>
                 <div className="buttons px-1">
                   <Link to={`/updatefamouscity/${hotels.id}`}>
                     <button
-                      onClick={() => updateCities(citiess.id)}
+                      onClick={() => updateCities(hotels.id)}
                       className="btn btn-primary"
                     >
                       Edit
@@ -128,13 +113,13 @@ function HotelListTable() {
                   </Link>
 
                   <button
-                    onClick={() => deleteCities(citiess.id)}
+                    onClick={() => deleteCities(hotels.id)}
                     className="btn btn-danger"
                   >
                     Delete
                   </button>
                 </div>
-              </td> */}
+              </td>
             </tr>
           ))}
         </tbody>
