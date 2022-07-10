@@ -5,9 +5,7 @@ import {
   TrendingUp,
   PermIdentity,
   Storefront,
-  
   BarChart,
-
 } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 
@@ -15,25 +13,7 @@ export default function Sidebar() {
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
-        <div className="sidebarMenu">
-          
-          {/* <ul className="sidebarList">
-            <Link to="/" className="link">
-            <li className="sidebarListItem active">
-              <LineStyle className="sidebarIcon" />
-              Home
-            </li>
-            </Link>
-            <li className="sidebarListItem">
-              <Timeline className="sidebarIcon" />
-              Analytics
-            </li>
-            <li className="sidebarListItem">
-              <TrendingUp className="sidebarIcon" />
-              Sales
-            </li>
-          </ul> */}
-        </div>
+        <div className="sidebarMenu"></div>
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Quick Menu</h3>
           <ul className="sidebarList">
@@ -50,20 +30,21 @@ export default function Sidebar() {
               </li>
             </Link>
 
+            <Link to="/housetable" className="link">
+              <li className="sidebarListItem">
+                <Storefront className="sidebarIcon" />
+                House
+              </li>
+            </Link>
+            {/* 
             <Link to="/hotellisttable" className="link">
               <li className="sidebarListItem">
                 <Storefront className="sidebarIcon" />
                 HotelList
               </li>
-            </Link>
-           
-            <li className="sidebarListItem">
-              <BarChart className="sidebarIcon" />
-              Reports
-            </li>
+            </Link> */}
           </ul>
         </div>
-     
       </div>
     </div>
   );

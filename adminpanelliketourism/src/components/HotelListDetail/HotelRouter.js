@@ -1,11 +1,11 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-
+import "../../assets/sass/hotelrouter.scss"
 function HotelRouter() {
     const { id } = useParams();
 
   return (
-    <div>
+    <div className="router">
 
       <Link to={`/hotelImagesTable/${id}`}>
         <button className="btn btn-primary">Hotelimages</button>

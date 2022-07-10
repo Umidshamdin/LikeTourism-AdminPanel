@@ -55,14 +55,14 @@ function CreateEvent() {
       )
 
       .then(function (response) {
-        Swal.fire(name, "Created", "success");
+        Swal.fire(name, "Oteli əlavə edildi", "success");
       })
       .catch(function (error) {
         Swal.fire({
           icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
-          footer: '<a href="">Why do I have this issue?</a>',
+          
+          text: "Xəta baş verdi",
+          
         });
       });
   }
@@ -81,7 +81,7 @@ function CreateEvent() {
           <Form.Label>Name</Form.Label>
           <Form.Control
             type="text"
-            placeholder=" city Name"
+            placeholder=" Hotel Name"
             onChange={(e) => setName(e.target.value)}
           />
         </Form.Group>

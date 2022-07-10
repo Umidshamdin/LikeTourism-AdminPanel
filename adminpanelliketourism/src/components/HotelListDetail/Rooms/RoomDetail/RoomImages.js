@@ -1,15 +1,15 @@
 import { Table } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
-import "../../assets/sass/hotellisttable.scss";
+import "../../../../assets/sass/hotellisttable.scss";
 import { useParams } from "react-router-dom";
 
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-function HotelListTable() {
+function RoomImages() {
   let count = 0;
 
-  const [hotel, setHotels] = useState([]);
+  const [roomImage, setRoomImages] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
@@ -17,73 +17,56 @@ function HotelListTable() {
   }, []);
 
   const loadHotels = async () => {
-    
     const results = await axios.get(
-      `https://localhost:44363/api/HotelDescription/GetAll/${id}`
+      `
+      https://localhost:44363/api/RoomImages/GetAll/${id}`
     );
-    setHotels(results.data);
+    setRoomImages(results.data);
   };
-    const deleteCities = async (id) => {
-      await axios.delete(`/api/FamousCity/Delete/${id}`);
+    const deleteRoomImages = async (id) => {
+      await axios.delete(`
+      https://localhost:44363/api/RoomImages/Delete/${id}`);
       loadHotels();
     };
 
-    const updateCities = async id => {
-     console.log(id);
-    };
+    // const updateCities = async id => {
+    //  console.log(id);
+    // };
 
   return (
     <div className="tables">
-      <Link to="/HotelCreate" className="btn btn-success btn-fw link">
-        Create Hotel
+      <Link to="/createroomimages" className="btn btn-success btn-fw link">
+        Create Hotel Images
       </Link>
-      <Link to="/FamousCityTable" className="btn btn-danger btn-fw link">
-        Go To back
+      <Link to="/HotelRouter/:id" className="btn btn-danger btn-fw link">
+        Go To Detail
       </Link>
 
       <Table striped bordered hover variant="dark">
         <thead className="thead">
           <tr>
             <th className="ths">#</th>
-            <th>LongDesc</th>
-            <th>Breakfast</th>
-            <th>BreakfastTitle</th>
-            <th>Parking</th>
-            <th>Animal</th>
-            <th>CheckIn</th>
-            <th>HotelListId</th>
+            <th>Image</th>
 
-
-
-            
+            <th>ReservationId</th>
             <th>Settings</th>
           </tr>
         </thead>
         <tbody className="tbodies">
-          {hotel.map((hotels) => (
+          {roomImage.map((roomimg) => (
             <tr className="trs">
               <td className="tds">{++count}</td>
 
               <td>
-                {hotels.longDesc}
+                <img
+                  className="images"
+                  src={`data:image/jpeg;base64,${roomimg.image}`}
+                  alt=""
+                />
               </td>
               <td>
-                {hotels.breakfast}
-              </td>
-              <td>
-                {hotels.breakfastTitle}
-              </td>
-              <td>
-                {hotels.parking}
-              </td>
-              <td>
-                {hotels.animal}
-              </td>
-              <td>
-                {hotels.checkIn}
-              </td>
-              <td>
-                {hotels.hotelListId}
+
+                {roomimg.reservationId}
               </td>
              
 
@@ -103,17 +86,10 @@ function HotelListTable() {
               
               <td>
                 <div className="buttons px-1">
-                  <Link to={`/updatefamouscity/${hotels.id}`}>
-                    <button
-                      onClick={() => updateCities(hotels.id)}
-                      className="btn btn-primary"
-                    >
-                      Edit
-                    </button>
-                  </Link>
+                 
 
                   <button
-                    onClick={() => deleteCities(hotels.id)}
+                    onClick={() => deleteRoomImages(roomimg.id)}
                     className="btn btn-danger"
                   >
                     Delete
@@ -128,4 +104,4 @@ function HotelListTable() {
   );
 }
 
-export default HotelListTable;
+export default RoomImages;

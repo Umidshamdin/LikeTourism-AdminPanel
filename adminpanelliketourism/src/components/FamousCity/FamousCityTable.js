@@ -21,12 +21,12 @@ function FamousCityTable() {
   };
 
   const deleteCities = async (id) => {
-    await axios.delete(`/api/FamousCity/Delete/${id}`);
+    await axios.delete(`https://localhost:44363/api/FamousCity/Delete/${id}`);
     loadCities();
   };
 
   const updateCities = async (id) => {
-    console.log(id);
+    
   };
 
   return (
@@ -37,12 +37,12 @@ function FamousCityTable() {
 
       <Table striped bordered hover variant="dark">
         <thead className="thead">
-          <tr>
+          <tr className="classtr">
             <th className="ths">#</th>
             <th>Image</th>
             <th>Name</th>
-            <th>Id</th>
-            <th>Settings</th>
+            <th>CityId</th>
+            <th style={{width:"283px"}}>Settings</th>
           </tr>
         </thead>
         <tbody className="tbodies">
@@ -57,9 +57,11 @@ function FamousCityTable() {
                   alt=""
                 />
               </td>
+
               <td>
                 <div className="cityname">{citiess.name}</div>
               </td>
+
               <td>
                 <div className="cityname">{citiess.id}</div>
               </td>
@@ -84,7 +86,7 @@ function FamousCityTable() {
                   <div className="hotelss">
                     <Link to={`/hotellisttable/${citiess.id}`}>
                       <button className="btn btn-primary hotelsto">
-                        Hotels
+                        Go To Hotels
                       </button>
                     </Link>
                   </div>

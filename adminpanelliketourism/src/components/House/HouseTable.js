@@ -1,16 +1,15 @@
 import { Table } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import "../../assets/sass/hotellisttable.scss";
-import { useParams } from "react-router-dom";
 
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-function HotelListTable() {
+function HouseTable() {
   let count = 0;
 
   const [hotel, setHotels] = useState([]);
-  const { id } = useParams();
+ 
 
   useEffect(() => {
     loadHotels();
@@ -19,12 +18,12 @@ function HotelListTable() {
   const loadHotels = async () => {
     debugger;
     const results = await axios.get(
-      `https://localhost:44363/api/HotelList/GetAll/${id}`
+      `https://localhost:44363/api/House/GetAll`
     );
     setHotels(results.data);
   };
   const deleteHotels = async (id) => {
-    await axios.delete(`https://localhost:44363/api/HotelList/Delete/${id}`);
+    await axios.delete(`https://localhost:44363/api/House/Delete/${id}`);
     loadHotels();
   };
   const updateCities = async (id) => {
@@ -36,31 +35,27 @@ function HotelListTable() {
 
   return (
     <div className="tables">
-      <Link to="/HotelCreate" className="btn btn-success btn-fw link">
-        Create Hotel
+      <Link to="/CreateHouse" className="btn btn-success btn-fw link">
+        Create House
       </Link>
       <Link to="/FamousCityTable" className="btn btn-danger btn-fw link">
         Go To back
       </Link>
 
-      <h3>HotelList</h3>
 
       <Table striped bordered hover variant="dark">
         <thead className="thead">
           <tr>
             <th className="ths">#</th>
-            {/* <th>Image</th> */}
+            <th>Image</th>
             <th>Name</th>
-            <th>Dictance</th>
-            <th>Star</th>
-
-            <th>Desc</th>
-            <th>Rating</th>
-            <th>RatingTitle</th>
             <th>Prise</th>
-
+            <th>Rating</th>
+            <th>RatingCommit</th>
             <th>FamousCityId</th>
-            <th>Settings</th>
+            <th>Setting</th>
+
+           
           </tr>
         </thead>
         <tbody className="tbodies">
@@ -68,46 +63,37 @@ function HotelListTable() {
             <tr className="trs">
               <td className="tds">{++count}</td>
 
-              {/* <td>
+              <td>
                 <img
                   className="images"
                   src={`data:image/jpeg;base64,${hotels.image}`}
                   alt=""
                 />
-              </td> */}
+              </td>
               <td>
                 <div className="cityname">{hotels.name}</div>
               </td>
               <td>
-                <div className="cityname">{hotels.distance}</div>
-              </td>
-
-              <td>
-                <div className="cityname">{hotels.star}</div>
-              </td>
-
-              <td>
-                <div className="cityname">{hotels?.desc.substring(0, 13)}</div>
+                <div className="cityname">{hotels.prise}</div>
               </td>
 
               <td>
                 <div className="cityname">{hotels.rating}</div>
               </td>
 
-              <td>
-                <div className="cityname">{hotels.ratingTitle}</div>
-              </td>
 
               <td>
-                <div className="cityname">{hotels.prise}</div>
+                <div className="cityname">{hotels.ratingCommit}</div>
               </td>
+
+              
 
               <td>
                 <div className="cityname">{hotels.famousCityId}</div>
               </td>
 
               <td>
-                <Link to={`/hotellistupdate/${hotels.id}`}>
+                <Link to={`/edithouse/${hotels.id}`}>
                   <button
                     onClick={() => updateCities(hotels.id)}
                     className="btn btn-warning"
@@ -123,7 +109,7 @@ function HotelListTable() {
                   Delete
                 </button>
 
-                <Link to={`/hotelrouter/${hotels.id}`}>
+                <Link to={`/houserouter/${hotels.id}`}>
                   <button className="btn btn-primary">Detail</button>
                 </Link>
               </td>
@@ -155,4 +141,4 @@ function HotelListTable() {
   );
 }
 
-export default HotelListTable;
+export default HouseTable;

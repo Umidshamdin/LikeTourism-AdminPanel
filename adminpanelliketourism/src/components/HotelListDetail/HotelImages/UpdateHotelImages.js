@@ -1,22 +1,20 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import "../../assets/sass/updatefamouscity.scss";
+
 
 import { Button, Form } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
-function UpdateFamousCity(props) {
+function UpdateHotelImages(props) {
   const { id } = useParams();
-
-  const [name, setName] = useState();
+ 
   const [img, setImg] = useState();
 
-  const [newName, setNewName] = useState();
-  const [newİmg, setNewImg] = useState();
+  const [newimg, setnewImg] = useState();
 
   function initPromise() {
-    const response = axios.get(`/api/FamousCity/GetById/${id}`);
+    const response = axios.get(`/api/HotelListImages/GetById/${id}`);
     return new Promise(function (res, rej) {
       res(response);
     });
@@ -26,22 +24,23 @@ function UpdateFamousCity(props) {
     e.preventDefault();
     await axios
       .put(
-        `/api/FamousCity/Edit/${id}`,
+        `
+        /api/HotelListImages/Edit/${id}`,
         {
           Id: id,
-          Name: newName,
-          Image: newİmg,
+         
+          Image: newimg,
         },
         { "Content-Type": "multipart/form-data" }
       )
       .then(function (response) {
-        Swal.fire(newName, "Updated", "success");
+        Swal.fire("", "Updated", "success");
       })
       .catch(function (error) {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Xəta baş verdi",
+          text: "Something went wrong!",
           footer: '<a href="">Why do I have this issue?</a>',
         });
       });
@@ -50,11 +49,11 @@ function UpdateFamousCity(props) {
   useEffect(() => {
     initPromise()
       .then(function (result) {
-      
+        // "initResolve"
         return result.data;
       })
       .then(function (result) {
-        setName(result.name); 
+        
         setImg(result.image);
       });
   });
@@ -72,7 +71,7 @@ function UpdateFamousCity(props) {
   function base64Img(file) {
     var base64String = getBase64(file);
     base64String.then(function (result) {
-      setNewImg(result);
+      setnewImg(result);
     });
   }
   return (
@@ -85,15 +84,7 @@ function UpdateFamousCity(props) {
         />
       </div>
       <Form onSubmit={(e) => update(e)}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label> Name</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter Event Name"
-            onChange={(e) => setNewName(e.target.value)}
-            defaultValue={name}
-          />
-        </Form.Group>
+      
         <Form.Group controlId="formFile" className="mb-3">
           <Form.Label>Image</Form.Label>
           <Form.Control
@@ -111,4 +102,4 @@ function UpdateFamousCity(props) {
   );
 }
 
-export default UpdateFamousCity;
+export default UpdateHotelImages;

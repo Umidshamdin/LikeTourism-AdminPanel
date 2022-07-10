@@ -1,6 +1,6 @@
 import { Table } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
-import "../../assets/sass/hotellisttable.scss";
+import "../../../assets/sass/hotellisttable.scss";
 import { useParams } from "react-router-dom";
 
 import axios from "axios";
@@ -17,25 +17,26 @@ function HotelListTable() {
   }, []);
 
   const loadHotels = async () => {
-    debugger;
+    
     const results = await axios.get(
-      `https://localhost:44363/api/HotelList/GetAll/${id}`
+      `https://localhost:44363/api/HotelDescription/GetAll/${id}`
     );
     setHotels(results.data);
   };
-  //   const deleteCities = async (id) => {
-  //     await axios.delete(`/api/FamousCity/Delete/${id}`);
-  //     loadCities();
-  //   };
+    const deleteCities = async (id) => {
+      await axios.delete(`
+      /api/HotelDescription/Delete/${id}`);
+      loadHotels();
+    };
 
-  //   const updateCities = async id => {
-  //    console.log(id);
-  //   };
+    const updateCities = async id => {
+     console.log(id);
+    };
 
   return (
     <div className="tables">
-      <Link to="/HotelCreate" className="btn btn-success btn-fw link">
-        Create Hotel
+      <Link to="/CreateHotelDescription" className="btn btn-success btn-fw link">
+        Create Description
       </Link>
       <Link to="/FamousCityTable" className="btn btn-danger btn-fw link">
         Go To back
@@ -45,45 +46,67 @@ function HotelListTable() {
         <thead className="thead">
           <tr>
             <th className="ths">#</th>
-            <th>Desc</th>
-            <th>Rating</th>
-            <th>RatingTitle</th>
-            <th>Prise</th>
+            <th>LongDesc</th>
+            <th>Breakfast</th>
+            <th>BreakfastTitle</th>
+            <th>Parking</th>
+            <th>Animal</th>
+            <th>CheckIn</th>
+            <th>HotelListId</th>
+
+
+
+            
+            <th>Settings</th>
           </tr>
         </thead>
         <tbody className="tbodies">
-          {hotel.map((hotelss) => (
+          {hotel.map((hotels) => (
             <tr className="trs">
               <td className="tds">{++count}</td>
 
               <td>
-                <div className="cityname">{hotelss.desc}</div>
+                {hotels.longDesc.substring(0,20)}
               </td>
+              <td>
+                {hotels.breakfast}
+              </td>
+              <td>
+                {hotels.breakfastType}
+              </td>
+              <td>
+                {hotels.parking}
+              </td>
+              <td>
+                {hotels.animal}
+              </td>
+              <td>
+                {hotels.checkIn}
+              </td>
+              <td>
+                {hotels.hotelListId}
+              </td>
+             
 
-              <td>
-                <div className="cityname">{hotelss.rating}</div>
-              </td>
-              <td>
-                <div className="cityname">{hotelss.ratingTitle}</div>
-              </td>
-
-              <td>
-                <div className="cityname">{hotelss.prise}</div>
-              </td>
-
-              <td>
-                <Link to={`/hotellisttable2/${hotelss.id}`}>
+              {/* <td>
+                <Link to={`/hotellisttable2/${hotels.id}`}>
                   <button className="btn btn-warning">Edit</button>
-                  <button className="btn btn-warning">Delete</button>
-
                 </Link>
-              </td>
-              {/* 
+
+                <Link to={"/"}>
+                  <button className="btn btn-danger">Delete</button>
+                </Link>
+
+                <Link to={"/"}>
+                  <button className="btn btn-primary">Detail</button>
+                </Link>
+              </td> */}
+              
               <td>
                 <div className="buttons px-1">
-                  <Link to={`/updatefamouscity/${hotels.id}`}>
+                  <Link to={`/updatehoteldescription/${hotels.id}`}>
                     <button
-                      onClick={() => updateCities(citiess.id)}
+                      onClick={() => updateCities(hotels.id)}
                       className="btn btn-primary"
                     >
                       Edit
@@ -91,13 +114,13 @@ function HotelListTable() {
                   </Link>
 
                   <button
-                    onClick={() => deleteCities(citiess.id)}
+                    onClick={() => deleteCities(hotels.id)}
                     className="btn btn-danger"
                   >
                     Delete
                   </button>
                 </div>
-              </td> */}
+              </td>
             </tr>
           ))}
         </tbody>

@@ -9,33 +9,33 @@ import { Link } from "react-router-dom";
 function HotelListTable() {
   let count = 0;
 
-  const [hotel, setHotels] = useState([]);
+  const [room, setRooms] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
-    loadHotels();
+    loadRooms();
   }, []);
 
-  const loadHotels = async () => {
+  const loadRooms = async () => {
     debugger;
     const results = await axios.get(
       `https://localhost:44363/api/Reservation/GetAll/${id}`
     );
-    setHotels(results.data);
+    setRooms(results.data);
   };
-  //   const deleteCities = async (id) => {
-  //     await axios.delete(`/api/FamousCity/Delete/${id}`);
-  //     loadCities();
-  //   };
+  const deleteRooms = async (id) => {
+    await axios.delete(`/api/Reservation/Delete/${id}`);
+    loadRooms();
+  };
 
-  //   const updateCities = async id => {
-  //    console.log(id);
-  //   };
+  const updateRooms = async (id) => {
+    console.log(id);
+  };
 
   return (
     <div className="tables">
-      <Link to="/HotelCreate" className="btn btn-success btn-fw link">
-        Create Hotel
+      <Link to="/createroom" className="btn btn-success btn-fw link">
+        Create Room
       </Link>
       <Link to="/FamousCityTable" className="btn btn-danger btn-fw link">
         Go To back
@@ -52,50 +52,53 @@ function HotelListTable() {
 
             <th>HotelListId</th>
             <th>Settings</th>
-
-
-           
           </tr>
         </thead>
         <tbody className="tbodies">
-          {hotel.map((hotels) => (
+          {room.map((rooms) => (
             <tr className="trs">
               <td className="tds">{++count}</td>
 
               <td>
                 <img
                   className="images"
-                  src={`data:image/jpeg;base64,${hotels.image}`}
+                  src={`data:image/jpeg;base64,${rooms.image}`}
                   alt=""
                 />
               </td>
               <td>
-                <div className="cityname">{hotels.roomType}</div>
+                <div className="cityname">{rooms.roomType}</div>
               </td>
               <td>
-                <div className="cityname">{hotels.roomPrise}</div>
-              </td>
-
-              <td>
-                <div className="cityname">{hotels.remained}</div>
+                <div className="cityname">{rooms.roomPrise}</div>
               </td>
 
               <td>
-                <div className="cityname">{hotels.hotelListId}</div>
+                <div className="cityname">{rooms.remained}</div>
               </td>
 
-              
+              <td>
+                <div className="cityname">{rooms.hotelListId}</div>
+              </td>
 
               <td>
-                <Link to={"/"}>
-                  <button className="btn btn-warning">Edit</button>
+                <Link to={`/UptadeRooms/${rooms.id}`}>
+                  <button
+                    onClick={() => updateRooms(rooms.id)}
+                    className="btn btn-warning"
+                  >
+                    Edit
+                  </button>
                 </Link>
 
-                <Link to={"/"}>
-                  <button className="btn btn-danger">Delete</button>
-                </Link>
+                <button
+                  onClick={() => deleteRooms(rooms.id)}
+                  className="btn btn-danger"
+                >
+                  Delete
+                </button>
 
-                <Link to={`/hotelrouter/${hotels.id}`}>
+                <Link to={`/roomimages/${rooms.id}`}>
                   <button className="btn btn-primary">Detail</button>
                 </Link>
               </td>

@@ -6,10 +6,10 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-function HotelImagesTable() {
+function HouseImagesTable() {
   let count = 0;
 
-  const [hotel, setHotels] = useState([]);
+  const [roomImage, setRoomImages] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
@@ -18,12 +18,14 @@ function HotelImagesTable() {
 
   const loadHotels = async () => {
     const results = await axios.get(
-      `/api/HotelListImages/GetAll/${id}`
+      `
+      https://localhost:44363/api/HouseImages/GetAll/${id}`
     );
-    setHotels(results.data);
+    setRoomImages(results.data);
   };
-    const deleteCities = async (id) => {
-      await axios.delete(`/api/HotelListImages/Delete/${id}`);
+    const deleteRoomImages = async (id) => {
+      await axios.delete(`
+      https://localhost:44363/api/HouseImages/Delete/${id}`);
       loadHotels();
     };
 
@@ -33,7 +35,7 @@ function HotelImagesTable() {
 
   return (
     <div className="tables">
-      <Link to="/CreateHotelImages" className="btn btn-success btn-fw link">
+      <Link to="/createhouseimages" className="btn btn-success btn-fw link">
         Create Hotel Images
       </Link>
       <Link to="/HotelRouter/:id" className="btn btn-danger btn-fw link">
@@ -46,25 +48,25 @@ function HotelImagesTable() {
             <th className="ths">#</th>
             <th>Image</th>
 
-            <th>HotelListId</th>
+            <th>HouseId</th>
             <th>Settings</th>
           </tr>
         </thead>
         <tbody className="tbodies">
-          {hotel.map((hotelss) => (
+          {roomImage.map((roomimg) => (
             <tr className="trs">
               <td className="tds">{++count}</td>
 
               <td>
                 <img
                   className="images"
-                  src={`data:image/jpeg;base64,${hotelss.image}`}
+                  src={`data:image/jpeg;base64,${roomimg.image}`}
                   alt=""
                 />
               </td>
               <td>
 
-                {hotelss.hotelListId}
+                {roomimg.houseId}
               </td>
              
 
@@ -84,17 +86,10 @@ function HotelImagesTable() {
               
               <td>
                 <div className="buttons px-1">
-                  <Link to={`/updatehotelimages/${hotelss.id}`}>
-                    <button
-                      // onClick={() => updateCities(hotels.id)}
-                      className="btn btn-primary"
-                    >
-                      Edit
-                    </button>
-                  </Link>
+                 
 
                   <button
-                    onClick={() => deleteCities(hotelss.id)}
+                    onClick={() => deleteRoomImages(roomimg.id)}
                     className="btn btn-danger"
                   >
                     Delete
@@ -109,4 +104,4 @@ function HotelImagesTable() {
   );
 }
 
-export default HotelImagesTable;
+export default HouseImagesTable;

@@ -6,17 +6,27 @@ import { Button, Form } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
-function UpdateFamousCity(props) {
+function EditHouse(props) {
   const { id } = useParams();
-
-  const [name, setName] = useState();
   const [img, setImg] = useState();
+  const [name, setName] = useState();
+  const [prise, setPrise] = useState();
+  const [rating, setRating] = useState();
+  const [ratingCommit, setRatingCommit] = useState();
 
-  const [newName, setNewName] = useState();
-  const [newİmg, setNewImg] = useState();
+
+  const [newname, setnewName] = useState();
+  const [newimg, setnewImg] = useState();
+  const [newprise, setnewPrise] = useState();
+  
+  const [newrating, setnewRating] = useState();
+  const [newratingCommit, setnewRatingCommit] = useState();
+ 
 
   function initPromise() {
-    const response = axios.get(`/api/FamousCity/GetById/${id}`);
+    const response = axios.get(`
+    
+    /api/House/GetById/${id}`);
     return new Promise(function (res, rej) {
       res(response);
     });
@@ -26,22 +36,27 @@ function UpdateFamousCity(props) {
     e.preventDefault();
     await axios
       .put(
-        `/api/FamousCity/Edit/${id}`,
+        `/api/House/Edit/${id}`,
         {
           Id: id,
-          Name: newName,
-          Image: newİmg,
+          Name: newname,
+          Image: newimg,
+          
+          Rating:newrating,
+          RatingCommit:newratingCommit,
+          Prise:newprise
+
         },
         { "Content-Type": "multipart/form-data" }
       )
       .then(function (response) {
-        Swal.fire(newName, "Updated", "success");
+        Swal.fire(newname, "Updated", "success");
       })
       .catch(function (error) {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Xəta baş verdi",
+          text: "Something went wrong!",
           footer: '<a href="">Why do I have this issue?</a>',
         });
       });
@@ -50,12 +65,18 @@ function UpdateFamousCity(props) {
   useEffect(() => {
     initPromise()
       .then(function (result) {
-      
+        // "initResolve"
         return result.data;
       })
       .then(function (result) {
-        setName(result.name); 
+        setName(result.name); // "normalReturn"
         setImg(result.image);
+        
+        setRating(result.rating);
+        setRatingCommit(result.ratingCommit);
+        setPrise(result.prise);
+
+
       });
   });
 
@@ -72,7 +93,7 @@ function UpdateFamousCity(props) {
   function base64Img(file) {
     var base64String = getBase64(file);
     base64String.then(function (result) {
-      setNewImg(result);
+      setnewImg(result);
     });
   }
   return (
@@ -90,7 +111,7 @@ function UpdateFamousCity(props) {
           <Form.Control
             type="text"
             placeholder="Enter Event Name"
-            onChange={(e) => setNewName(e.target.value)}
+            onChange={(e) => setnewName(e.target.value)}
             defaultValue={name}
           />
         </Form.Group>
@@ -102,6 +123,36 @@ function UpdateFamousCity(props) {
             defaultValue={img}
           />
         </Form.Group>
+       
+
+        
+
+        <Form.Group controlId="formFile" className="mb-3">
+          <Form.Label>Rating</Form.Label>
+          <Form.Control
+            type="number"
+            onChange={(e) => setnewRating(e.target.value)}
+            defaultValue={rating}
+          />
+        </Form.Group>
+
+        <Form.Group controlId="formFile" className="mb-3">
+          <Form.Label>RatingTitle</Form.Label>
+          <Form.Control
+            type="text"
+            onChange={(e) => setnewRatingCommit(e.target.value)}
+            defaultValue={ratingCommit}
+          />
+        </Form.Group>
+        <Form.Group controlId="formFile" className="mb-3">
+          <Form.Label>Prise</Form.Label>
+          <Form.Control
+            type="number"
+            onChange={(e) => setnewPrise(e.target.value)}
+            defaultValue={prise}
+          />
+        </Form.Group>
+
 
         <Button variant="primary" type="submit" className="mt-3">
           Submit
@@ -111,4 +162,4 @@ function UpdateFamousCity(props) {
   );
 }
 
-export default UpdateFamousCity;
+export default EditHouse;
